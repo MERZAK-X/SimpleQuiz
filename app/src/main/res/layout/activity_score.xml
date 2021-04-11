@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Score">
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="191dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:text="You Scored:"
+        android:textColor="#106A8E"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/donut_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donut_progress"
+        android:layout_width="212dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvScore"
+        custom:donut_progress="30" />
+
+    <Button
+        android:id="@+id/bReplay"
+        android:layout_width="192dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#328CD1"
+        android:drawableLeft="@drawable/ic_baseline_replay_24"
+        android:text="Replay"
+        app:cornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/donut_progress"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/bSignOut"
+        android:layout_width="192dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#328CD1"
+        android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
+        android:text="Sign out"
+        app:cornerRadius="25dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/bReplay"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
