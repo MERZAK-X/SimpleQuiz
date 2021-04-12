@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Simple Quiz</string>
     <string name="linkToRegister">Not Registered?
-        <a href="www.google.com">Sign-up</a>
+        <a href="#">Sign-up</a>
     </string>
     <string name="linkToLogin">Already have an account?
-        <a href="www.google.com">Sign-in</a>
+        <a href="#">Sign-in</a>
     </string>
 </resources>

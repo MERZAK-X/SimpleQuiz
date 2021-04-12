@@ -4,72 +4,47 @@ import androidx.appcompat.app.AppCompatActivity
 import ma.emsi.simplequiz.entities.Question
 import ma.emsi.simplequiz.controllers.QuizController
 import android.os.Bundle
-import ma.emsi.simplequiz.entities.Answer
-import ma.emsi.simplequiz.entities.Quiz
 import android.content.Intent
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.*
+import ma.emsi.simplequiz.entities.Quiz
+import ma.emsi.simplequiz.factory.QuizFactory
+import kotlin.coroutines.*
 
 class QuizView : AppCompatActivity() {
     private lateinit var currentQuestion: Question
-    private lateinit var  quizController: QuizController
-    private lateinit var  imgQuestion: ImageView
-    private lateinit var  tvQuestion: TextView
-    private lateinit var  rgAnswers: RadioGroup
-    private lateinit var  rbAnswer1: RadioButton
-    private lateinit var  rbAnswer2: RadioButton
-    private lateinit var  btNext: Button
-    /*var imgPath: String
-    var question: String
-    var choice1: String
-    var choice2: String*/
+    private lateinit var quizController: QuizController
+    private lateinit var imgQuestion: ImageView
+    private lateinit var tvQuestion: TextView
+    private lateinit var rgAnswers: RadioGroup
+    private lateinit var rbAnswer1: RadioButton
+    private lateinit var rbAnswer2: RadioButton
+    private lateinit var btNext: Button
+    private lateinit var quiz : Quiz
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
         activityViews
 
-        ////////////////////
-        val questions = mutableListOf<Question>()
-        val answers = mutableListOf<Answer>()
+        val testFactory = QuizFactory()
+        MainScope().launch {
+            quiz = testFactory.getQuiz("EMSI-Quiz-1")
+            quizController = QuizController(quiz, this@QuizView)
+            quizController.nextQuestion()
+        }.start()
 
-        answers.add(Answer("TEST CORRECT", true))
-        answers.add(Answer("TEST WRONG", false))
-
-        questions.add(
-            Question(
-                "Test Question ???",
-                4,
-                answers,
-                "https://firebasestorage.googleapis.com/v0/b/quizapp-e1ae2.appspot.com/o/QuizQuestionsImages%2Ftestscreen.png?alt=media&token=f1024394-de67-4907-875d-551dab2138a3"
-            )
-        )
-        answers.clear()
-        answers.add(Answer("TEST 2 CORRECT", true))
-        answers.add(Answer("TEST 2 WRONG", false))
-        questions.add(
-            Question(
-                "Test Question 2 ???",
-                4,
-                answers,
-                "https://firebasestorage.googleapis.com/v0/b/quizapp-e1ae2.appspot.com/o/QuizQuestionsImages%2Fquestion1.jpg?alt=media&token=c8637cce-d4d6-4dd2-896c-3025ff60d5d2"
-            )
-        )
-        val q = Quiz(questions, "MERZAK")
-
-        ////////////////////
-        quizController = QuizController(q, this)
-        quizController.nextQuestion()
         btNext.setOnClickListener { v: View ->
             val checkedRadioButtonId = rgAnswers.checkedRadioButtonId
             if (checkedRadioButtonId != -1) {
                 val answer =
                     (findViewById<View>(checkedRadioButtonId) as RadioButton).text.toString()
-                quizController!!.submitAnswer(currentQuestion!!, answer)
-                if (!quizController!!.nextQuestion()) {
+                quizController.submitAnswer(currentQuestion, answer)
+                if (!quizController.nextQuestion()) {
                     val intent = Intent(v.context, Score::class.java)
-                    intent.putExtra("QuizScore", quizController!!.percentageScore())
+                    intent.putExtra("QuizScore", quizController.percentageScore())
                     startActivity(intent)
                     finish()
                 }
@@ -77,6 +52,7 @@ class QuizView : AppCompatActivity() {
                 Toast.makeText(v.context, "Please select an answer first !", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     fun setQuestion(quest: Question) {

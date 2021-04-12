@@ -44,7 +44,7 @@ class Register : AppCompatActivity() {
             else {
                 if (password == passwordConfirm && !emptyFields(username, email, password))
                     register(v)
-                else Toast.makeText(v.context,"Entered passwords do not match. Try Again!", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(v.context,"Passwords do not match. Try Again!", Toast.LENGTH_SHORT).show()
             }
         }
     }

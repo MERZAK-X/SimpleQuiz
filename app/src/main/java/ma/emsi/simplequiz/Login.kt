@@ -10,6 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import ma.emsi.simplequiz.entities.Answer
 
 class Login : AppCompatActivity() {
 
@@ -36,12 +39,11 @@ class Login : AppCompatActivity() {
             finish()
         }
 
-
         bLogin.setOnClickListener { v ->
 
             if (editTextsAreEmpty) Toast.makeText(
                 v.context,
-                "Enter Values first!",
+                "Please enter email and password !",
                 Toast.LENGTH_SHORT
             ).show() else {
                 connectToFireBase(v)

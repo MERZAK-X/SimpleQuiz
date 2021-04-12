@@ -6,5 +6,4 @@ data class Question (val value : String,
                      val imageUrl : String
 ) {
     val correctAnswer : Answer? get() = answers.findLast { a -> a.isCorrect }
-    // lateinit var image : Drawable get() = Glide.with(this).
 }

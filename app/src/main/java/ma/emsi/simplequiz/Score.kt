@@ -20,8 +20,6 @@ class Score : AppCompatActivity() {
 
         bReplay.setOnClickListener { v ->
             startActivity(Intent(v.context, QuizView::class.java))
-            //QuizView.point = 0
-            //QuizView.counter = 1
             finish()
         }
 
@@ -31,8 +29,4 @@ class Score : AppCompatActivity() {
         }
     }
 
-    /*companion object {
-        @JvmField
-        var result = (QuizView.point * 100 / 5).toFloat()
-    }*/
 }
