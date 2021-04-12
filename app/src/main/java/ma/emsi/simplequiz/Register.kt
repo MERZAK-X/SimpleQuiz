@@ -14,7 +14,6 @@ class Register : AppCompatActivity() {
 
     var mAuth = FirebaseAuth.getInstance()
     private lateinit var email: String
-    private lateinit var username: String
     private lateinit var password: String
     private lateinit var passwordConfirm: String
 
@@ -26,7 +25,6 @@ class Register : AppCompatActivity() {
         val tvLinkToLogin = findViewById<TextView>(R.id.tvToLogin)
         val bRegister = findViewById<Button>(R.id.bRegister)
         val etEmail = findViewById<EditText>(R.id.etRegEmail)
-        val etLogin = findViewById<EditText>(R.id.etRegUsername)
         val etPassword = findViewById<EditText>(R.id.etRegPassword)
         val etConfirmPassword = findViewById<EditText>(R.id.etRegConfirmPassword)
 
@@ -37,12 +35,12 @@ class Register : AppCompatActivity() {
 
         bRegister.setOnClickListener { v ->
 
-            getTextValues(etEmail, etLogin, etPassword, etConfirmPassword)
+            getTextValues(etEmail, etPassword, etConfirmPassword)
 
-            if (emptyFields(username, email, password))
+            if (emptyFields(email, password))
                 Toast.makeText( v.context,"Enter you information first!", Toast.LENGTH_SHORT).show()
             else {
-                if (password == passwordConfirm && !emptyFields(username, email, password))
+                if (password == passwordConfirm && !emptyFields( email, password))
                     register(v)
                 else Toast.makeText(v.context,"Passwords do not match. Try Again!", Toast.LENGTH_SHORT).show()
             }
@@ -70,14 +68,13 @@ class Register : AppCompatActivity() {
             }
     }
 
-    private fun getTextValues(etEmail: EditText, etUsername: EditText, etPassword: EditText, etConfirmPassword: EditText) {
+    private fun getTextValues(etEmail: EditText, etPassword: EditText, etConfirmPassword: EditText) {
         email = etEmail.text.toString()
-        username = etUsername.text.toString()
         password = etPassword.text.toString()
         passwordConfirm = etConfirmPassword.text.toString()
     }
 
-    private fun emptyFields(login: String?, email: String?, password: String?): Boolean {
-        return login == "" || email == "" || password == ""
+    private fun emptyFields(email: String?, password: String?): Boolean {
+        return email == "" || password == ""
     }
 }
