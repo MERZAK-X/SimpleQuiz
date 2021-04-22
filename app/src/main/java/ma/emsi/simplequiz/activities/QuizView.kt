@@ -49,6 +49,7 @@ class QuizView : AppCompatActivity() {
                 if (!quizController.nextQuestion()) {
                     val intent = Intent(v.context, Score::class.java)
                     intent.putExtra("QuizScore", quizController.percentageScore())
+                    intent.putExtra("QuizName", quizName)
                     startActivity(intent)
                     finish()
                 }

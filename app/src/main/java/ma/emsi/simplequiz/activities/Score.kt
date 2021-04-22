@@ -13,6 +13,7 @@ class Score : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
 
+        val quizName = intent.getStringExtra("QuizName") ?: ""
         val bReplay = findViewById<Button>(R.id.bReplay)
         val bSignOut = findViewById<Button>(R.id.bSignOut)
         val donutProgress = findViewById<DonutProgress>(R.id.donut_progress)
@@ -20,7 +21,9 @@ class Score : AppCompatActivity() {
         donutProgress.progress = intent.getDoubleExtra("QuizScore",0.0).toInt()
 
         bReplay.setOnClickListener { v ->
-            startActivity(Intent(v.context, QuizView::class.java))
+            val intent = Intent(v.context, QuizView::class.java)
+            intent.putExtra("QuizName", quizName)
+            startActivity(intent)
             finish()
         }
 
