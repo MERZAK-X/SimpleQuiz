@@ -2,7 +2,6 @@ package ma.emsi.simplequiz.factory
 
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import ma.emsi.simplequiz.QuizView
 import ma.emsi.simplequiz.entities.Answer
 import ma.emsi.simplequiz.entities.Question
 import ma.emsi.simplequiz.entities.Quiz
@@ -41,6 +40,21 @@ class QuizFactory {
         quiz = Quiz(questions,"TEST")
         return quiz
 
+    }
+
+    suspend fun getInfo(quizName: String) : String {
+        var info = ""
+        firestore.document("Quizzes/$quizName")
+            .get()
+            .addOnSuccessListener{
+                info = "About the quiz:\n${it.data?.get("info")}\n\n" +
+                       "Author: ${it.data?.get("author")}"
+                if (it.data?.get("info") == null)
+                    info = "QUIZ NOT FOUND !"
+            }.addOnFailureListener{
+                info = "QUIZ NOT FOUND !"
+            }.await()
+        return info
     }
 
 }

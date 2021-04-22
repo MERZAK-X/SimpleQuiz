@@ -1,6 +1,6 @@
 package ma.emsi.simplequiz.controllers
 
-import ma.emsi.simplequiz.QuizView
+import ma.emsi.simplequiz.activities.QuizView
 import ma.emsi.simplequiz.entities.Question
 import ma.emsi.simplequiz.entities.Quiz
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.QuizChooser">
+
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="64dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="MissingConstraints, VectorDrawableCompat" />
+
+
+    <EditText
+        android:id="@+id/etQuizID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Quiz ID"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/bLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintVertical_bias="0.589" />
+
+    <Button
+        android:id="@+id/btSearchQuiz"
+        android:layout_width="170dp"
+        android:layout_height="53dp"
+        android:text="Search Quiz"
+        app:backgroundTint="#328CD1"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvQuizInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQuizID"
+        app:layout_constraintVertical_bias="0.102"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.17" />
+
+    <TextView
+        android:id="@+id/tvQuizInfo"
+        android:layout_width="304dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="48dp"
+        android:clickable="false"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Quiz Info :\n"
+        app:layout_constraintBottom_toTopOf="@+id/btStartQuiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQuizID"
+        app:layout_constraintVertical_bias="0.996" />
+
+    <Button
+        android:id="@+id/btStartQuiz"
+        android:layout_width="170dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="60dp"
+        android:enabled="false"
+        android:text="Start Quiz"
+        app:backgroundTint="#4CAF50"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

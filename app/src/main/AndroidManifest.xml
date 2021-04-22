@@ -9,12 +9,14 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleQuiz">
-        <activity android:name=".QuizView" />
-        <activity android:name=".Score" />
-        <activity android:name=".Register" />
-        <activity android:name=".Login">
+        <activity android:name=".activities.QuizChooser"></activity>
+        <activity android:name=".activities.QuizView" />
+        <activity android:name=".activities.Score" />
+        <activity android:name=".activities.Register" />
+        <activity android:name=".activities.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
